@@ -73,18 +73,18 @@ class Library {
     }
 }
 
-addBook(book) {
+addBook(book); {
     if(book.state > 30) {
         return this.books.push(book);
     }
 }
 
-findBookBy(type, value) {
+findBookBy(type, value); {
     let searchResult = this.books.find(book => book[type] === value);
     return (typeof searchResult === "object") ? searchResult : null;
 }
 
-giveBookByName(bookName) {
+giveBookByName(bookName); {
     let reqBook  = this.books.find(book => book.name === bookName);
     if(typeof reqBook === "object") {
         this.books.splice(this.books.indexOf(reqBook), 1);
