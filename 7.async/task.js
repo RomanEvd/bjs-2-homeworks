@@ -33,8 +33,8 @@ class AlarmClock {
     start () {
         let checkClock = (clock) => {
             let alarm = this.getCurrentFormattedTime();
-            if (clock.time ===alarm) {
-                return clock.callback;
+            if (clock.time === alarm) {
+                clock.callback();
             }
         }
         if (this.timerId !== null) {
@@ -42,7 +42,6 @@ class AlarmClock {
                 this.alarmCollection.forEach(clock => checkClock(clock));
             }, 1000);
         }
-        return
     }
     stop () {
         if (this.timerId !== null) {
@@ -51,23 +50,23 @@ class AlarmClock {
         }
     }
     printAlarms () {
-        return this.alarmCollection.forEach(clock => console.log(clock.id + ":" + clock.time));
+        this.alarmCollection.forEach(clock => console.log(clock.id + ":" + clock.time));
     }
     clearAlarms () {
         this.stop();
-        return this.alarmCollection = [];
+        this.alarmCollection = [];
     }
 }
 
 // пример использования
 
 function testCase () {
-   let PhoneClock = new AlarmClock();
-   PhoneClock.addClock('09:00', () => console.log ("Пора вставать!"), 1);
-   PhoneClock.addClock('09:01', () => console.log ("Давай вставай уже!"), 2);
-   PhoneClock.removeClock(2);
-   PhoneClock.addClock('09:01', () => console.log ("Пора умываться"), 3);
-   PhoneClock.start();
-   PhoneClock.stop();
-   PhoneClock.printAlarms();
+   let phoneClock = new AlarmClock();
+   phoneClock.addClock('09:00', () => console.log ("Пора вставать!"), 1);
+   phoneClock.addClock('09:01', () => console.log ("Давай вставай уже!"), 2);
+   phoneClock.removeClock(2);
+   phoneClock.addClock('09:01', () => console.log ("Пора умываться"), 3);
+   phoneClock.start();
+   phoneClock.stop();
+   phoneClock.printAlarms();
 }
